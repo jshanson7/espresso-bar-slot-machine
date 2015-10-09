@@ -1,0 +1,201 @@
+@import '../mixins/layout';
+@import '../mixins/utils';
+@import '../mixins/textures';
+
+$orange: #F2C48D;
+$lightOrange: #FFDCB2;
+$darkOrange1: #E6B77E;
+$darkOrange2: #E0AD70;
+$espressoMachineHeadWidth: em(528);
+
+.EspressoMachine {
+  height: em(730);
+  width: em(570);
+  max-height: 100%;
+  max-width: 100%;
+
+  &__head {
+    position: absolute;
+    z-index: 4;
+    background: linear-gradient(to bottom, $lightOrange 0%, $darkOrange2 100%);
+    border-radius: 49%;
+    opacity: 1;
+    height: em(244);
+    width: $espressoMachineHeadWidth;
+    box-shadow: 0 em(14) em(24)  em(-10) rgba(0, 0, 0, 0.15),
+      0 em(14) em(6)  em(-9) rgba(255, 255, 255, 0.9) inset,
+      0  em(-10) em(6)  em(-7) rgba(0, 0, 0, 0.16) inset;
+  }
+
+  &__spout {
+    @mixin brushedMetal bottom, 90deg;
+    position: absolute;
+    z-index: 3;
+    top: em(230);
+    left: em(190);
+    height: em(88);
+    width: em(148);
+    border-radius: 0 0 70% 70%/0% 0 20% 20%;
+    box-shadow: em(0) em(0) em(60) em(-8) rgba(0, 0, 0, 0.42);
+    transform: perspective(em(100)) rotateX(-7deg);
+  }
+
+  &__filter {
+    @mixin brushedMetal bottom, 90deg;
+    position: absolute;
+    z-index: 2;
+    top: em(312);
+    left: em(218);
+    height: em(46);
+    width: em(92);
+    border-radius: 0 0 70% 70%/0% 0 24% 24%;
+    box-shadow: em(0) em(0) em(60) em(-8) rgba(0, 0, 0, 0.42);
+    transform: perspective(em(52)) rotateX(-7deg);
+  }
+
+  &__filter-handle {
+    position: absolute;
+    z-index: 2;
+    width: em(104);
+    height: em(21);
+    top: em(330);
+    left: em(250);
+    transform: perspective(em(52)) rotateY(-30deg) rotateZ(11deg);
+    border-radius: 15% 3% 3% 15%/45% 30% 30% 45%;
+    background: linear-gradient(180deg,#000 0,#a6a6a6 15%,#757575 25%,#000 100%);
+    border-left: em(1) solid #000;
+    border-right: em(1) solid black;
+  }
+
+  &__body {
+    z-index: 1;
+    position: absolute;
+    height: em(304);
+    width: em(269);
+    top: em(236);
+    left: em(129);
+    border-radius: 0 0 70% 70%/0% 0 14% 14%;
+    background: linear-gradient(to right, $darkOrange1 0%, $lightOrange 50%, $darkOrange2 100%);
+    box-shadow: 0 0 em(29)  em(-3) rgba(0, 0, 0, 0.35);
+    transform: perspective(em(100)) rotateX(-4deg);
+  }
+
+  &__base {
+    height: em(171);
+    top: em(479);
+    position: absolute;
+    width: em(528);
+    background: linear-gradient(to bottom, $darkOrange1 0%, $lightOrange 50%, $darkOrange1 100%);
+    overflow: hidden;
+    border-radius: 70% 70% 70% 70%/66% 66% 35% 35%;
+    box-shadow: 0 em(11) em(8)  em(-5) rgba(0, 0, 0, 0.6);
+  }
+
+  &__base-metal {
+    overflow: hidden;
+    position: absolute;
+    height: 66%;
+    width: 84%;
+    left: 8%;
+    top: -7%;
+    border-radius: 50%;
+    border: em(1) solid rgb(255, 255, 255);
+    transform: perspective(em(160)) rotateX(34deg);
+    background: #DBDBDB;
+    background: radial-gradient(50% 0,8% 50%,rgba(255,255,255,.5) 0,rgba(255, 255, 255, 0) 100%),
+      radial-gradient(50% 100%,12% 50%,rgba(255,255,255,.6) 0,rgba(255,255,255,0) 100%),
+      radial-gradient(0 50%,50% 7%,rgba(255,255,255,.5) 0,rgba(255,255,255,0) 100%),
+      radial-gradient(100% 50%,50% 5%,rgba(255,255,255,.5) 0,rgba(255,255,255,0) 100%),
+      repeating-radial-gradient(50% 50%,100% 100%,transparent 0,transparent 3%,rgba(0,0,0,.1) 3.5%),
+      repeating-radial-gradient(50% 50%,100% 100%,rgba(255,255,255,0) 0,rgba(255,255,255,0) 6%,rgba(255,255,255,.1) 7.5%),
+      repeating-radial-gradient(50% 50%,100% 100%,rgba(255, 255, 255, 0) 0,rgba(255,255,255,0) 1.2%,rgba(255,255,255,.2) 2.2%),
+      radial-gradient(50% 50%,200% 50%,#fff 5%,#B7B7B7 30%,#C1C1C1 100%);
+    box-shadow: 0 0 em(6) em(1) rgba(0, 0, 0, 0.5) inset;
+  }
+
+  &__base-metal-overlay {
+    border-radius: 50%;
+    left: 4%;
+    position: absolute;
+    top: 10%;
+    height: 80%;
+    width: 92%;
+    background: radial-gradient(rgba(0, 0, 0, 0.9) em(6), transparent em(8));
+    background-color: transparent;
+    background-size: em(24) em(8);
+  }
+
+  &__head-wrapper,
+  &__body-wrapper,
+  &__filter-spout-wrapper,
+  &__spout-wrapper,
+  &__filter-wrapper,
+  &__filter-handle-wrapper,
+  &__base-wrapper,
+  &__base-metal-wrapper,
+  &__children-wrapper {
+    @mixin safariPerspectiveBug;
+  }
+
+  &__head-wrapper,
+  &__body-wrapper,
+  &__spout-wrapper,
+  &__filter-handle-wrapper,
+  &__base-wrapper,
+  &__base-metal-wrapper,
+  &__children-wrapper {
+    position: absolute;
+  }
+
+  &__head-wrapper,
+  &__children-wrapper,
+  &__filter-wrapper,
+  &__body-wrapper,
+  &__spout-wrapper,
+  &__base-wrapper,
+  &__filter-handle-wrapper {
+    transition: margin-left 1250ms, margin-top 1250ms;
+  }
+
+  &__body-wrapper,
+  &__children-wrapper,
+  &__spout-wrapper {
+    z-index: 1;
+  }
+  
+  &__filter-spout-wrapper {
+    z-index: 2;
+  }
+
+  &__head-wrapper {
+    z-index: 3;
+  }
+
+  &__base-metal-wrapper {
+    @mixin fullHeightWidth;
+  }
+
+  &--prerender {
+    @extend .EspressoMachine;
+    opacity: 0.01;
+
+    .EspressoMachine__head-wrapper {
+      margin-top: -200%;
+    }
+
+    .EspressoMachine__filter-wrapper,
+    .EspressoMachine__body-wrapper {
+      margin-left: -200%;
+    }
+
+    .EspressoMachine__spout-wrapper,
+    .EspressoMachine__children-wrapper {
+      margin-left: 200%;
+    }
+
+    .EspressoMachine__base-wrapper,
+    .EspressoMachine__filter-handle-wrapper {
+      margin-top: 200%;
+    }
+  }
+}

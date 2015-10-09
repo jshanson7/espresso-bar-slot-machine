@@ -1,0 +1,131 @@
+@import '../mixins/utils';
+@import './EspressoMachine';
+
+.RewardSequence {
+  display: none;
+  position: absolute;
+  perspective: 100em;
+
+  &--show, &--done {
+    @extend .RewardSequence;
+    display: block;
+    perspective-origin: 16.5em 22em;
+  }
+
+  $cupShadow: 0 0 em(26) em(-7) rgba(0, 0, 0, 0.5), inset 0 em(-8) em(30) em(-6) rgba(0,0,0,.5);
+
+  &__cup {
+    position: absolute;
+    background-color: gray;
+    background: linear-gradient(-78deg, #CECECE 0, #EFEFEF 30%, #FBFBFB 60%, #D4D4D4 100%);
+    border-radius: 3% 3% 40% 40%/30% 30% 80% 80%;
+    box-shadow: $cupShadow;
+
+    &--coffee, &--tea, &--espresso {
+      @extend .RewardSequence__cup;
+    }
+
+    $coffeeCupX: em(184);
+    $coffeeCupY: em(410);
+    $coffeeCupWidth: em(160);
+    $coffeeCupHeight: em(150);
+
+    &--coffee {
+      left: $coffeeCupX;
+      top: $coffeeCupY;
+      width: $coffeeCupWidth;
+      height: $coffeeCupHeight;
+    }
+
+    $teaCupWidth: calc(0.75 * $coffeeCupWidth);
+    $teaCupHeight: calc(0.75 * $coffeeCupHeight);
+    $teaCupX: calc((($coffeeCupWidth - $teaCupWidth) / 2) + $coffeeCupX);
+    $teaCupY: calc(($coffeeCupHeight - $teaCupHeight) + $coffeeCupY);
+
+    &--tea {
+      left: $teaCupX;
+      top: $teaCupY;
+      width: $teaCupWidth;
+      height: $teaCupHeight;
+    }
+
+    $espressoCupWidth: calc(0.6 * $coffeeCupWidth);
+    $espressoCupHeight: calc(0.6 * $coffeeCupHeight);
+    $espressoCupX: calc((($coffeeCupWidth - $espressoCupWidth) / 2) + $coffeeCupX);
+    $espressoCupY: calc(($coffeeCupHeight - $espressoCupHeight) + $coffeeCupY);
+
+    &--espresso {
+      left: $espressoCupX;
+      top: $espressoCupY;
+      width: $espressoCupWidth;
+      height: $espressoCupHeight;
+    }
+  }
+
+  &__cup-handle {
+    position: absolute;
+    left: 94%;
+    top: 22%;
+    width: 27%;
+    height: 48%;
+    background: radial-gradient(3% 50%, ellipse, transparent 51%, #E6E6E6 00%);
+    background: -moz-radial-gradient(3% 50%, ellipse, transparent 51%, #E6E6E6 00%);
+    border-radius: 10% 100% 100% 20%/10% 80% 80% 10%;
+    box-shadow: inset em(-4) 0 em(9) em(-3) rgba(0,0,0,0.35);
+    transform: rotateZ(9deg);
+  }
+
+  &__liquid {
+    position: absolute;
+    display: block;
+    width: em(12);
+    height: em(320);
+    left: em(258);
+    top: em(32);
+
+    &--coffee, &--tea, &--espresso {
+      @extend .RewardSequence__liquid;
+    }
+
+    &--coffee {
+      background-color: rgba(152, 78, 40, 0.8);
+      box-shadow: 0 0 em(16) 0 rgba(0,0,0,0.4), inset em(7) em(0) em(7) em(-5) rgba(255, 255, 255, 0.45);
+    }
+
+    &--tea {
+      background-color: rgba(113, 158, 73, 0.6);
+      box-shadow: 0 0 em(16) 0 rgba(0,0,0,0.4), inset em(7) em(0) em(7) em(-5) rgba(255, 255, 255, 0.35);
+    }
+
+    &--espresso {
+      background-color: rgba(70, 30, 0, 0.8);
+      box-shadow: 0 0 em(16) 0 rgba(0,0,0,0.4), inset em(7) em(0) em(7) em(-5) rgba(255, 255, 255, 0.45);
+
+    }
+  }
+
+  &__message {
+    position: absolute;
+    left: 0;
+    top: em(384);
+    width: $espressoMachineHeadWidth;
+    text-align: center;
+  }
+
+  &__message-text {
+    font-size: em(50);
+    font-family: Raleway;
+    font-weight: 100;
+    color: #2B2B2B;
+    text-shadow: 6px 6px 10px rgba(0, 0, 0, 0.52),0 0 4px rgb(255, 255, 255);
+  }
+
+  &--done {
+    .RewardSequence__cup {
+      &:hover, &--coffee:hover, &--tea:hover, &--espresso:hover {
+        cursor: pointer;
+        box-shadow: $cupShadow, $clickableBoxShadow;
+      }
+    }
+  }
+}

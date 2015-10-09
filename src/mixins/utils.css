@@ -1,0 +1,15 @@
+@import 'layout';
+
+@define-mixin safariPerspectiveBug {
+  position: relative;
+  transform: translate3d(0,0,0);
+}
+
+@define-mixin unstyleList {
+  @mixin clearMarginPadding;
+  & > li {
+    list-style: none;
+  }
+}
+
+$clickableBoxShadow: 0 0 0 em(1) #82EA72, 0 0 em(10) 0 rgba(0, 0, 0, 0.3);

@@ -1,0 +1,37 @@
+@import '../mixins/layout';
+@import '../mixins/utils';
+
+.Reel {
+  position: relative;
+  height: 100%;
+  overflow: hidden;
+  background: linear-gradient(to top, #C3C3C3 0, #DEDEDE 50%, #F7F7F7 100%);
+  flex-grow: 1;
+  perspective: 1100px;
+  border: solid rgba(255, 255, 255, 0.7);
+  border-top-width: 0;
+  border-bottom-width: 0;
+
+  &:not(:last-child) {
+    margin-right: em(1.5);
+    border-right-width: em(1);
+  }
+
+  &:not(:first-child) {
+    border-left-width: em(1);
+  }
+
+  &__symbols {
+    @mixin unstyleList;
+    @mixin fullHeightWidth;
+    transform-style: preserve-3d;
+    position: absolute;
+  }
+
+  &__symbol-wrapper {
+    @mixin fullHeightWidth;
+    @mixin centerContent;
+    position: absolute;
+    backface-visibility: hidden;
+  }
+}

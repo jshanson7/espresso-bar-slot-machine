@@ -1,0 +1,41 @@
+
+@define-mixin fullHeight {
+  height: 100%;
+}
+
+@define-mixin fullWidth {
+  width: 100%;
+}
+
+@define-mixin fullHeightWidth {
+  @mixin fullHeight;
+  @mixin fullWidth;
+}
+
+@define-mixin clearMargin {
+  margin: 0;
+}
+
+@define-mixin clearPadding {
+  padding: 0;
+}
+
+@define-mixin clearMarginPadding {
+  @mixin clearMargin;
+  @mixin clearPadding;
+}
+
+@define-mixin centerContentVertically {
+  display: flex;
+  align-items: center;
+}
+
+@define-mixin centerContentHorizontally {
+  display: flex;
+  justify-content: center;
+}
+
+@define-mixin centerContent {
+  @mixin centerContentVertically;
+  @mixin centerContentHorizontally;
+}

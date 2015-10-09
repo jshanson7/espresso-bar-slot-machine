@@ -1,0 +1,29 @@
+@import '../mixins/layout';
+@import '../mixins/utils';
+
+.EspressoBarSlotMachine {
+  @mixin fullHeightWidth;
+  @mixin centerContent;
+
+  &__lever-wrapper,
+  &__reward-sequence-wrapper {
+    @mixin safariPerspectiveBug;
+    position: absolute;
+  }
+
+  &__reward-sequence-wrapper {
+    z-index: 1;
+  }
+
+  &--spinning {
+    @extend .EspressoBarSlotMachine;
+    pointer-events: none;
+  }
+
+  &--reward {
+    @extend .EspressoBarSlotMachine;
+    .EspressoBarSlotMachine__lever-wrapper {
+      pointer-events: none;
+    }
+  }
+}

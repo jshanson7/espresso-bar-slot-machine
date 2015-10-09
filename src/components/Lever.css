@@ -1,0 +1,93 @@
+@import '../mixins/textures';
+@import '../mixins/utils';
+
+$leverBaseStartX: em(390);
+$leverBaseStartY: em(440);
+$leverArmThickness: em(15);
+$leverBaseArmLength: em(75);
+$leverJointThickness: em(40);
+$leverJointLength: em(30);
+$leverJointStartX: $leverBaseArmLength;
+$leverJointStartY: calc(-0.5 * ($leverJointThickness - $leverArmThickness));
+$leverForearmLength: em(200);
+$leverForearmStartX: calc($leverJointStartX + (0.5 * ($leverJointLength - $leverArmThickness)));
+$leverForearmStartY: calc($leverJointStartY - $leverForearmLength);
+$handleDiameter: em(45);
+$handleStartX: calc(-0.5 * ($handleDiameter - $leverArmThickness));
+$handleStartY: calc(-0.5 * $handleDiameter);
+
+.Lever {
+  position: relative;
+  left: $leverBaseStartX;
+  top: $leverBaseStartY;
+  transform-style: preserve-3d;
+  perspective: em(500);
+
+  &__base-arm {
+    @mixin brushedMetal left, 180deg;
+    position: absolute;
+    width: $leverBaseArmLength;
+    height: $leverArmThickness;
+    border-left: em(2) solid rgba(93, 93, 93, 0.4);
+    border-radius: em(4) 0px 0px em(4);
+  }
+
+  &__joint {
+    @mixin brushedMetal left, 180deg;
+    position: absolute;
+    width: $leverJointLength;
+    height: $leverJointThickness;
+    left: $leverJointStartX;
+    top: $leverJointStartY;
+  }
+
+  &__forearm {
+    @mixin brushedMetal bottom, 90deg;
+    position: absolute;
+    width: $leverArmThickness;
+    height: $leverForearmLength;
+    left: $leverForearmStartX;
+    top: $leverForearmStartY;
+    transform: rotateZ(18deg);
+    transform-origin: 0% 100%;
+    border-radius: 0 0 em(5) 0;
+    transform-style: preserve-3d;
+  }
+
+  &__handle {
+    position: absolute;
+    width: $handleDiameter;
+    height: $handleDiameter;
+    left: $handleStartX;
+    top: $handleStartY;
+    margin: 0;
+    border-radius: 50%;
+    background: radial-gradient(circle at 50% 120%, #FFA3A3, #FF6464 10%, #DE5858 80%, #CA3030 100%);
+    box-shadow: inset em(0) em(-2) em(6) em(-1) rgba(0, 0, 0, 0.32);
+    
+    &:before {
+      content: "";
+      position: absolute;
+      top: 1%;
+      left: 5%;
+      width: 90%;
+      height: 90%;
+      border-radius: 50%;
+      background: radial-gradient(circle at 50% em(0), #ffffff, rgba(255, 255, 255, 0) 58%);
+      -webkit-filter: blur(em(5));
+      z-index: 2;
+    }
+  }
+
+  &:hover {
+    cursor: pointer;
+    cursor: -webkit-grab;
+    .Lever__base-arm, .Lever__joint, .Lever__forearm {
+      box-shadow: $clickableBoxShadow;
+    }
+    
+    .Lever__handle {
+      box-shadow: inset em(0) em(-2) em(6) em(-1) rgba(0, 0, 0, 0.32), $clickableBoxShadow;
+    }
+  }
+}

@@ -1,0 +1,24 @@
+@import '../node_modules/normalize.css/normalize.css';
+@import url(https://fonts.googleapis.com/css?family=Raleway:100);
+
+html {
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+#Root {
+  position: relative;
+  height: 100%;
+  width: 100%;
+  padding: 5%;
+  overflow: hidden;
+}
